@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Eval based calculator</title>
+  <style>
+    body{
+      background: royalblue ;
+    }
+    
+    .app {
+      background: rgb(20, 20, 20);
+      border-radius:20px;
+      margin-top: 60px;
+      box-shadow: 50px 50px 50px black;
+    }
+    input{
+      height:50px;
+      width:310px;
+      background: rgb(20, 20, 20);
+      margin-top:80px;
+      margin-left:15px;
+      border: solid 1px rgb(20, 20, 20);
+      cursor: pointer;
+      color:white;
+      font-size: 30px;
+      text-align: end;
+      font-weight: bolder;
+      
+    }
+    .buttons{
+      display:grid;
+      grid-template-columns: repeat(4,1fr);
+      background: dimgray;
+      border-radius:10px;
+    }
+    button{
+      margin:15px;
+      height:50px;
+      background: rgb(20, 20, 20);
+      border-radius:5px;
+      border:none;
+      font-weight: bolder;
+      font-size: 25px;
+    }
+    .button{
+      color:white;
+    }
+    .sign{
+      color: darkorange;
+    }
+    .comands{
+      color:rgb(210,255,0);
+    }
+    
+    .equal{
+      grid-column: span 2;
+    }
+    
+  </style>
+  
+  
+  
+</head>
+
+<body>
+  <div class="app">
+    <input id="input">
+    
+    <div class="buttons">
+      <button class="comands" onclick="clr()">AC</button>
+      <button class="comands" onclick="rmv()">C</button>
+      
+      <button class="comands" onclick="sign('%')">%</button>
+      <button class="sign" onclick="sign('/')">/</button>
+      <button class="button" onclick="insert(7)">7</button>
+      <button class="button" onclick="insert(8)">8</button>
+      <button class="button" onclick="insert(9)">9</button>
+      <button class="sign" onclick="sign('*')">x</button>
+      <button class="button" onclick="insert(4)">4</button>
+      <button class="button" onclick="insert(5)">5</button>
+      <button class="button" onclick="insert(6)">6</button>
+      <button class="sign" onclick="sign('-')">-</button>
+      <button class="button" onclick="insert(1)">1</button>
+      <button class="button" onclick="insert(2)">2</button>
+      <button class="button" onclick="insert(3)">3</button>
+      <button class="sign" onclick="sign('+')">+</button>
+      <button class="button" onclick="insert(0)">0</button>
+      <button class="button" onclick="insert('.')">.</button>
+      <button class="sign equal" onclick="calc()">=</button>
+      
+      
+    </div>
+    
+  </div>
+  
+  
+  
+  <script >
+    let inputfield = document.getElementById('input');
+    
+    let mode = 'calc';
+    
+    function calc(){
+     inputfield.value = eval(inputfield.value);
+     mode = 'equal';
+     }
+    
+    function insert(num){
+      
+      if(mode === 'equal'){
+        inputfield.value = '';
+      }
+      mode = 'calc';
+      inputfield.value += num;
+    }
+    
+    function sign(sign){
+      inputfield.value += sign;
+      mode = 'calc';
+    }
+    
+    function clr(){
+      inputfield.value = '';
+    }
+    
+    function rmv(){
+     inputfield.value = inputfield.value.slice(0, -1);
+    }
+    
+    function bracs(){
+      
+    }
+  
+    
+  </script>
+</body>
+</html>
